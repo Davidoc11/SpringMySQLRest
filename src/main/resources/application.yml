@@ -1,0 +1,10 @@
+---
+server:
+  port: 8090
+#  contextPath: /api
+# security:
+#  user:
+#    name: admin
+#    password: admin
+    
+# metro
