@@ -1,6 +1,5 @@
 package com.example.SpringMySQLRest.security.jwt;
 
-import com.example.SpringMySQLRest.model.enums.Roles;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +35,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     protected void doFilterInternal(HttpServletRequest req,
             HttpServletResponse res,
             FilterChain chain) throws IOException, ServletException {
-
+log.info("----------------------------- doFilterInternal");
         String header = req.getHeader(parameters.getHEADER_STRING());
         if (header == null || !header.startsWith(parameters.getTOKEN_PREFIX())) {
             chain.doFilter(req, res);
@@ -51,6 +48,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
+        log.info("----------------------------- getAuthentication");
         String token = request.getHeader(parameters.getHEADER_STRING());
         if (token != null) {
             // parse the token.

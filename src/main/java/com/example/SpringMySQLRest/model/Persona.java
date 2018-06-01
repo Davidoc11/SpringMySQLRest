@@ -1,7 +1,6 @@
 package com.example.SpringMySQLRest.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.LocalDate;
@@ -78,7 +77,7 @@ public class Persona {
     @ApiModelProperty(notes = "La direccion de la persona")
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
-    @NotNull(message = "error.addressNull")
+    //@NotNull(message = "error.addressNull")
     private Address address;
 
 }

@@ -7,7 +7,7 @@ package com.example.SpringMySQLRest.repository;
 
 import com.example.SpringMySQLRest.model.ApplicationUser;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.security.access.prepost.PreAuthorize;
 
 /**
  *
@@ -20,7 +20,7 @@ public interface UserRepository extends JpaRepository<ApplicationUser, Long>{
     
     
     @Override
-    @PreAuthorize("hasRole('ROLE_MASTER')")
+    //@PreAuthorize("hasRole('ROLE_MASTER')")
     public ApplicationUser save(ApplicationUser user);
     
 }

@@ -7,13 +7,11 @@ import com.example.SpringMySQLRest.model.Persona;
 import com.example.SpringMySQLRest.model.enums.Status;
 import com.example.SpringMySQLRest.repository.PersonaRepository;
 import com.example.SpringMySQLRest.service.PersonaService;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -26,8 +24,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,10 +64,11 @@ public class PersonaController {
 
     @GetMapping(value = "")
     @ApiOperation(value = "Obtiene una lista de personas", response = BaseModel.class)
-    public ResponseEntity<BaseModel> getAllUsers() {
+    public ResponseEntity<BaseModel<List<Persona>>> getAllUsers() {
         List<Persona> personas = personaRepository.findAll();
-        BaseModel bm = new BaseModel();
-        bm.setStatus(Status.bad);
+        BaseModel<List<Persona>> bm = new BaseModel<>();
+        bm.setStatus(Status.ok);
+        bm.setCode(Integer.SIZE);
         bm.setResult(personas);
         return ResponseEntity.ok(bm);
 

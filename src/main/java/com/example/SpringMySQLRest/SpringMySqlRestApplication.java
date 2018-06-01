@@ -1,18 +1,15 @@
 package com.example.SpringMySQLRest;
 
-import com.example.SpringMySQLRest.security.jwt.SecurityConstants;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 //@Profile("produccion")
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @EntityScan(basePackageClasses = {SpringMySqlRestApplication.class, Jsr310JpaConverters.class})
 @SpringBootApplication
 public class SpringMySqlRestApplication {

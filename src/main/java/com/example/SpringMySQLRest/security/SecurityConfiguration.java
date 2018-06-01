@@ -3,20 +3,17 @@ package com.example.SpringMySQLRest.security;
 import com.example.SpringMySQLRest.security.jwt.JWTAuthenticationFilter;
 import com.example.SpringMySQLRest.security.jwt.JWTAuthorizationFilter;
 import com.example.SpringMySQLRest.security.jwt.Parameters;
-import java.util.Collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -58,7 +55,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HEADER: " + HEADER_STRING);
         log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SIGN: " + SIGN_UP_URL);
         http.csrf().disable().authorizeRequests()
-                // .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.GET, "/login").permitAll()
                 .antMatchers("/api**").fullyAuthenticated()
                 .anyRequest().authenticated()
                 .and()
